@@ -26,6 +26,13 @@ const testController = require("../controllers/testController");
 *                   $ref: '#/components/schemas/Test'
 *         500:
 *           description: 실패
+*/
+testRouter.get("/", testController.getTest);
+
+/**
+*  @swagger
+*  paths:
+*   /test:
 *     post:
 *       summary: 만들어냄
 *       tags: [Test]
@@ -41,7 +48,6 @@ const testController = require("../controllers/testController");
 *         500:
 *           description: 실패
 */
-testRouter.get("/", testController.getTest);
 testRouter.post("/", testController.postTest);
 
 
