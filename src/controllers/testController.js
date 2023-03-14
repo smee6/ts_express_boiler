@@ -2,7 +2,6 @@ const testService = require("../services/testService");
 
 
 /**
- * 
  * @name getTest
  * @method GET
  * @url /test
@@ -19,18 +18,16 @@ exports.getTest = async (req, res, next) => {
 };
 
 /**
- * 
  * @name postTest
  * @method POST
  * @url /test
  * @body { name: String, age: Number }
- * @description Test를 생성하는 API
+ * @description Test를 생성
  */
 exports.postTest = async (req, res, next) => {
     try {
         const user = req.body;
         const test = await testService.createTestData(user);
-
         return res.send(test);
     } catch (err) {
         console.log(err);
