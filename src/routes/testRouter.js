@@ -7,13 +7,6 @@ testRouter.get("/", (req, res) => {
     res.send("Hello World");
 });
 
-testRouter.post("/", async (req, res) => {
-    try {
-        testController.postTest(req, res);
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send({ err: err.message });
-    }
-});
+testRouter.post("/", testController.postTest);
 
 module.exports = { testRouter };
