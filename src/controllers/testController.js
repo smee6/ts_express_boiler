@@ -10,8 +10,8 @@ const testService = require("../services/testService");
  */
 exports.getTest = async (req, res, next) => {
     try {
-        const test = await Test.find();
-        res.send(test);
+        const test = await testService.getTestData();
+        return res.send(test);
     } catch (err) {
         console.log(err);
         return res.status(500).send({ err: err.message });
@@ -28,9 +28,10 @@ exports.getTest = async (req, res, next) => {
  */
 exports.postTest = async (req, res, next) => {
     try {
-        const userDTO = req.body;
-        const test = await testService.createTestData(userDTO);
-        res.send(test);
+        const user = req.body;
+        const test = await testService.createTestData(user);
+
+        return res.send(test);
     } catch (err) {
         console.log(err);
         return res.status(500).send({ err: err.message });

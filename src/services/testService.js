@@ -1,6 +1,11 @@
 const { Test } = require("../models");
-const CONSTANTS = require("../conf/CONSTANTS.js");
-const ERROR = require("../conf/ERROR_CODE.js");
+const CONSTANTS = require("../conf/constant.js");
+const ERROR = require("../conf/error.js");
+
+exports.getTestData = async () => {
+    const test = await Test.find();
+    return test;
+};
 
 exports.createTestData = async (user) => {
     if (!user.name || !user.age) {
@@ -11,3 +16,4 @@ exports.createTestData = async (user) => {
 
     return test;
 };
+

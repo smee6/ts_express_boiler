@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 const path = require('path');
 const mongoose = require("mongoose");
 const { testRouter } = require("./routes");
@@ -13,6 +15,8 @@ const { userAuth } = require("./middlewares/authUserTest");
 
 if (process.env.NODE_ENV == "production") dotenv.config({ path: "./env/.env_production" });
 else dotenv.config({ path: "./env/.env_test" });
+
+const { swagger_option } = require("./conf/swagger");
 
 const runServer = async () => {
     try {
@@ -44,6 +48,13 @@ const runServer = async () => {
 
         app.use(morgan('combined', { stream: accessLogStream }))
         //morgan에 에러 메시지도 같이 전달
+
+        //swagger
+        const options = swagger_option;
+
+        const specs = swaggerJsdoc(options);
+        app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, { explorer: true })
+        );
 
         //유저 아이피나 그런것들 유효성 검증 (경로를 나중에 유저나 그런쪽으로 바꿔서 특정 라우터에만 태움)
         app.use('/', userAuth, (req, res, next) => {

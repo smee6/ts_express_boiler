@@ -1,5 +1,21 @@
 const { Schema, model } = require("mongoose");
-
+/** 
+* @swagger
+*     components:
+*         schemas:
+*             Test:
+*                 type: object
+*                 required:
+*                     - name
+*                     - age
+*                 properties:
+*                     name:
+*                         type: string
+*                         description: 이름
+*                     age:
+*                         type: integer
+*                         description: 나이
+*/
 const TestSchema = new Schema({
     name: {
         type: String,
