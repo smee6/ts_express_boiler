@@ -3,8 +3,6 @@ const CONSTANTS = require("../conf/CONSTANTS.js");
 const ERROR = require("../conf/ERROR_CODE.js");
 
 const testController = {
-    //test 관련 함수들을 작성
-
     /**
         * 
         * @name postTest 포스트 테스트용 함수

@@ -1,13 +1,12 @@
 const express = require('express')
 const app = express()
-const port = 7569
 const path = require('path');
 const mongoose = require("mongoose");
 const { testRouter } = require("./routes");
 const dotenv = require("dotenv");
 const morgan = require('morgan');
 const date = new Date();
-const today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+const today = date.getFullYear() + '_' + (date.getMonth() + 1) + '_' + date.getDate();
 const rfs = require('rotating-file-stream')
 const helmet = require('helmet');
 const { userAuth } = require("./middlewares/authUserTest");
@@ -42,7 +41,9 @@ const runServer = async () => {
         const accessLogStream = rfs.createStream(`log_${today}`, {
             path: "./logs",
         })
+
         app.use(morgan('combined', { stream: accessLogStream }))
+        //morgan에 에러 메시지도 같이 전달
 
         //유저 아이피나 그런것들 유효성 검증 (경로를 나중에 유저나 그런쪽으로 바꿔서 특정 라우터에만 태움)
         app.use('/', userAuth, (req, res, next) => {
@@ -56,8 +57,8 @@ const runServer = async () => {
             return res.send("/index.html");
         });
 
-        app.listen(port, () => {
-            console.log(`Server listening on port ${port}`)
+        app.listen(process.env.SERVER_PORT, () => {
+            console.log(`Server listening on port ${process.env.SERVER_PORT}`)
         })
 
     } catch (err) {
