@@ -5,7 +5,8 @@
   "main": "/src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "production": "cross-env NODE_ENV=production pm2 start src/server.js --name boiler_plate_test --watch"
   },
   "author": "",
   "license": "ISC",
