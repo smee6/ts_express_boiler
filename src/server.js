@@ -42,7 +42,7 @@ const runServer = async () => {
         app.use(express.static(path.join(__dirname, 'public')));
 
         //로그 셋팅
-        const accessLogStream = rfs.createStream(`log_${today}`, {
+        const accessLogStream = rfs.createStream(`${today}.log`, {
             path: "./logs",
         })
 
