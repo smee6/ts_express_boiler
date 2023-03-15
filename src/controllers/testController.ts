@@ -1,7 +1,6 @@
 const testService = require("../services/testService");
 import { Request, Response, NextFunction } from 'express';
-
-
+import { TestAttribute } from '../models/Test';
 /**
  * @name getTest
  * @method GET
@@ -10,7 +9,7 @@ import { Request, Response, NextFunction } from 'express';
  */
 exports.getTest = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const test = await testService.getTestData();
+        const test: [TestAttribute] = await testService.getTestData();
         return res.send(test);
     } catch (err) {
         console.log(err);
@@ -27,8 +26,8 @@ exports.getTest = async (req: Request, res: Response, next: NextFunction) => {
  */
 exports.postTest = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user = req.body;
-        const test = await testService.createTestData(user);
+        const user: TestAttribute = req.body;
+        const test: TestAttribute = await testService.createTestData(user);
         return res.send(test);
     } catch (err) {
         console.log(err);

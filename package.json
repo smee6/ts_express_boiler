@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "nodemon dist/server.js",
-    "ts_nobuild_dev": "nodemon src/server.ts",
-    "production": "cross-env NODE_ENV=production pm2 start dist/server.js --name boiler_plate_test --watch",
+    "dev": "npm run build && nodemon dist/server.js",
+    "dev_ts": "nodemon src/server.ts",
+    "production": "npm run build && cross-env NODE_ENV=production pm2 start dist/server.js --name boiler_plate_test --watch",
     "ts_nobuild_production": "cross-env NODE_ENV=production pm2 start ts-node -- --project tsconfig.json src/server.ts --name boiler_plate_test --watch"
   },
   "author": "",

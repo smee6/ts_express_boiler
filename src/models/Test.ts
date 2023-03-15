@@ -18,14 +18,14 @@ import { Schema, model, Model } from 'mongoose';
 *                         description: 나이
 */
 
-interface User {
+interface TestAttribute {
     name: string;
     age: number;
 }
 
-interface DBUserModel extends Model<User> { }
+//interface DBUserModel extends Model<User> { }
 
-const TestSchema = new Schema<User>({
+const TestSchema = new Schema<TestAttribute>({
     name: {
         type: String,
         index: true,
@@ -41,6 +41,6 @@ const TestSchema = new Schema<User>({
 TestSchema.set("toObject", { virtuals: true });
 TestSchema.set("toJSON", { virtuals: true });
 
-const Test = model<User>('test', TestSchema);
+const Test = model<TestAttribute>('test', TestSchema);
 
-export { Test };
+export { Test, TestAttribute };
