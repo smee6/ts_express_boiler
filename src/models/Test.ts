@@ -1,4 +1,5 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model, Model } from 'mongoose';
+
 /** 
 * @swagger
 *     components:
@@ -16,7 +17,15 @@ const { Schema, model } = require("mongoose");
 *                         type: integer
 *                         description: 나이
 */
-const TestSchema = new Schema({
+
+interface User {
+    name: string;
+    age: number;
+}
+
+interface DBUserModel extends Model<User> { }
+
+const TestSchema = new Schema<User>({
     name: {
         type: String,
         index: true,
@@ -32,5 +41,6 @@ const TestSchema = new Schema({
 TestSchema.set("toObject", { virtuals: true });
 TestSchema.set("toJSON", { virtuals: true });
 
-const Test = model("test", TestSchema);
-module.exports = { Test };
+const Test = model<User>('test', TestSchema);
+
+export { Test };

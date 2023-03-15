@@ -1,6 +1,6 @@
 const { Test } = require("../models");
-const CONSTANTS = require("../conf/constant.js");
-const ERROR = require("../conf/error.js");
+const CONSTANTS = require("../conf/constant");
+const ERROR = require("../conf/error");
 
 exports.getTestData = async () => {
     const test = await Test.find();
