@@ -1,18 +1,21 @@
-import express = require('express');
-import { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 const app = express()
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const path = require('path');
-const mongoose = require("mongoose");
-const { testRouter } = require("./routes");
+
 const dotenv = require("dotenv");
 const morgan = require('morgan');
-const date = new Date();
-const today = date.getFullYear() + '_' + (date.getMonth() + 1) + '_' + date.getDate();
+
 const rfs = require('rotating-file-stream')
 const helmet = require('helmet');
+
+const mongoose = require("mongoose");
+const { testRouter } = require("./routes");
 const { userAuth } = require("./middlewares/authUserTest");
+
+const date = new Date();
+const today = date.getFullYear() + '_' + (date.getMonth() + 1) + '_' + date.getDate();
 
 if (process.env.NODE_ENV == "production") dotenv.config({ path: "./env/.env_production" });
 else dotenv.config({ path: "./env/.env_test" });
